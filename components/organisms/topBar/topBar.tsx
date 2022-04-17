@@ -1,4 +1,5 @@
 import { Button, Flex, HStack, Text } from '@chakra-ui/react';
+import { signIn } from 'next-auth/react';
 import { MenuItem } from '../../molecules/menuItem/menuItem';
 
 export const TopBar = () => {
@@ -31,7 +32,7 @@ export const TopBar = () => {
           <MenuItem text="Pricing" href="/pricing" />
         </HStack>
         <Flex marginLeft="82px">
-          <Button variant="solid" colorScheme="blue">
+          <Button variant="solid" colorScheme="blue" onClick={() => signIn()}>
             Get Started
           </Button>
         </Flex>

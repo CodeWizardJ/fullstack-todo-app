@@ -24,6 +24,7 @@ export const LandingBody = () => {
           <Text mb="8px">Including the following technologies:</Text>
           <UnorderedList>
             <ListItem>Next.js</ListItem>
+            <ListItem>Next Auth</ListItem>
             <ListItem>ChakraUI</ListItem>
             <ListItem>PrismaORM</ListItem>
             <ListItem>PostgreSQL</ListItem>
