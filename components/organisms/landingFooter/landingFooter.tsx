@@ -14,9 +14,11 @@ export const LandingFooter = () => {
       as="footer"
       backgroundColor="blue.300"
       py="40px"
+      mt="150px"
       width="100%"
       display="flex"
       justifyContent="center"
+      flexGrow={1}
     >
       <Container w={['100%', '100%', '100%', '90ch']}>
         <SimpleGrid columns={2} spacing={8}>

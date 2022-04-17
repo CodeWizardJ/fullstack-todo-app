@@ -10,7 +10,7 @@ import {
 
 export const LandingBody = () => {
   return (
-    <Container height={'830px'}>
+    <Container>
       <SimpleGrid columns={2} spacing="40px" padding="200px 24px">
         <Box>
           <Box
