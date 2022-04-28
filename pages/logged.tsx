@@ -1,10 +1,20 @@
+import { Button, Center, Container, Flex, Text } from '@chakra-ui/react';
 import { GetServerSideProps } from 'next';
-import { Session } from 'next-auth';
-import { getSession } from 'next-auth/react';
+import { getSession, signOut } from 'next-auth/react';
 import React from 'react';
 
-export const LoggedPage = ({ session }: Session) => {
-  return <div>logged</div>;
+//TODO figure out decontructed type for session
+export const LoggedPage = ({ session }: any) => {
+  return (
+    <Container py="64px">
+      <Center>
+        <Flex flexDirection={'column'}>
+          <Text mb="24px"> Welcome back {session.user.name}! 🖐️</Text>
+          <Button onClick={() => signOut()}>Logout</Button>
+        </Flex>
+      </Center>
+    </Container>
+  );
 };
 
 export default LoggedPage;

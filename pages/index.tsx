@@ -1,5 +1,6 @@
 import { Flex } from '@chakra-ui/react';
-import type { NextPage } from 'next';
+import type { GetServerSideProps, NextPage } from 'next';
+import { getSession } from 'next-auth/react';
 import Head from 'next/head';
 import { Hero } from '../components/molecules/hero/hero';
 import { LandingBody } from '../components/organisms/landingBody/landingBody';
@@ -29,3 +30,22 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  const session = await getSession({ req });
+
+  if (session) {
+    return {
+      redirect: {
+        destination: '/logged',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {
+      session,
+    },
+  };
+};
