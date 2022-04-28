@@ -3,7 +3,7 @@ import { GetServerSideProps } from 'next';
 import { getSession, signOut } from 'next-auth/react';
 import React from 'react';
 
-//TODO figure out decontructed type for session
+//TODO figure out deconstructed type for session
 export const LoggedPage = ({ session }: any) => {
   return (
     <Container py="64px">
