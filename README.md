@@ -2,8 +2,7 @@
 
 ## Summary
 
-This project is a sample project of a todo application as a SaaS product, requiring
-auth login.
+This project is a simple project of a todo application as a SaaS product.
 
 ## Technologies
 
