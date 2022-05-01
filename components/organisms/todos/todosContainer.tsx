@@ -8,12 +8,18 @@ const fetchTodos = async (): Promise<Array<Todo>> => {
   return data;
 };
 
-export const TodosContainer = () => {
+type TodosContainerProps = {
+  refreshTodoToken: string;
+};
+
+export const TodosContainer: React.FC<TodosContainerProps> = ({
+  refreshTodoToken,
+}) => {
   const [todos, setTodos] = useState<Array<Todo>>([]);
 
   useEffect(() => {
     fetchTodos().then((todos) => setTodos(todos));
-  }, []);
+  }, [refreshTodoToken]);
 
   return <Todos todos={todos}></Todos>;
 };

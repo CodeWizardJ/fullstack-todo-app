@@ -28,6 +28,8 @@ export default async function handler(
         userId: session.userId,
       },
     });
+
+    prisma.$disconnect;
     res.status(200).json(todos);
   }
 }
