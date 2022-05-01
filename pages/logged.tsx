@@ -2,15 +2,17 @@ import { Button, Center, Container, Flex, Text } from '@chakra-ui/react';
 import { GetServerSideProps } from 'next';
 import { getSession, signOut } from 'next-auth/react';
 import React from 'react';
+import { TodosContainer } from '../components/organisms/todos/todosContainer';
+import { UserSession } from './api/auth/[...nextauth]';
 
-//TODO figure out deconstructed type for session
-export const LoggedPage = ({ session }: any) => {
+export const LoggedPage = ({ session }: { session: UserSession }) => {
   return (
     <Container py="64px">
       <Center>
         <Flex flexDirection={'column'}>
-          <Text mb="24px"> Welcome back {session.user.name}! 🖐️</Text>
+          <Text mb="24px"> Welcome back {session?.user?.name}! 🖐️</Text>
           <Button onClick={() => signOut()}>Logout</Button>
+          <TodosContainer />
         </Flex>
       </Center>
     </Container>
