@@ -1,4 +1,4 @@
-import { prisma } from '../../../../prisma/db';
+import prisma from '../../../../prisma/db';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getSession } from 'next-auth/react';
 import { UserSession } from '../../auth/[...nextauth]';
@@ -23,15 +23,13 @@ export default async function handler(
 
   if (req.method === 'PATCH') {
     const { id } = req.query;
-    const { newTitle } = JSON.parse(req.body);
+    const parsedBody = JSON.parse(req.body);
 
-    console.log(id, newTitle);
-
-    const todo = await prisma.todo.update({
+    const todo = await prisma?.todo.update({
       where: {
         id: String(id),
       },
-      data: { title: newTitle },
+      data: { ...parsedBody },
     });
 
     res.status(200).json(todo);

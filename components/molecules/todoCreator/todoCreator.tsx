@@ -31,7 +31,7 @@ export const TodoCreator: React.FC<TodoCreatorProps> = ({ onTodoCreated }) => {
   };
 
   return (
-    <Flex flexDirection={'column'} py="16px">
+    <Flex flexDirection={'column'} py="16px" mt="72px">
       <Heading size="md" mb="8px">
         Create Todo
       </Heading>

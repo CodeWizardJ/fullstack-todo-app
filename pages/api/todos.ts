@@ -1,4 +1,4 @@
-import { prisma } from '../../prisma/db';
+import prisma from '../../prisma/db';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getSession } from 'next-auth/react';
 import { UserSession } from './auth/[...nextauth]';
@@ -20,10 +20,18 @@ export default async function handler(
   }
 
   if (req.method === 'GET') {
-    const todos = await prisma.todo.findMany({
+    const todos = await prisma?.todo.findMany({
       where: {
         userId: session.userId,
       },
+      orderBy: [
+        {
+          createdAt: 'desc',
+        },
+        {
+          isCompleted: 'desc',
+        },
+      ],
     });
 
     res.status(200).json(todos);

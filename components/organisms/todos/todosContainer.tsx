@@ -16,19 +16,38 @@ export const TodosContainer: React.FC<TodosContainerProps> = ({
   refreshTodoToken,
 }) => {
   const [todos, setTodos] = useState<Array<Todo>>([]);
+  const [completeTodoToken, setCompleteTodoToken] = useState('');
 
   useEffect(() => {
     fetchTodos().then((todos) => setTodos(todos));
-  }, [refreshTodoToken]);
+  }, [refreshTodoToken, completeTodoToken]);
 
   const onTodoBlur = async (todoId: Todo['id'], newTitle: Todo['title']) => {
     fetch(`/api/todo/${todoId}`, {
       method: 'PATCH',
       body: JSON.stringify({
-        newTitle,
+        title: newTitle,
       }),
     });
   };
 
-  return <Todos todos={todos} onTodoBlur={onTodoBlur}></Todos>;
+  const onTodoCompleteToggle = async (
+    todoId: Todo['id'],
+    isCompleted: Todo['isCompleted']
+  ) => {
+    fetch(`/api/todo/${todoId}`, {
+      method: 'PATCH',
+      body: JSON.stringify({
+        isCompleted,
+      }),
+    }).finally(() => setCompleteTodoToken(Math.random().toString()));
+  };
+
+  return (
+    <Todos
+      todos={todos}
+      onTodoBlur={onTodoBlur}
+      onTodoCompleteToggle={onTodoCompleteToggle}
+    ></Todos>
+  );
 };
