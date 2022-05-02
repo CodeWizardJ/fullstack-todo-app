@@ -12,6 +12,7 @@ This project is a simple project of a todo application as a SaaS product.
 - ChakraUI
 - PostgreSQL
 - Next Auth
+- Heroku
 
 ## How to run
 

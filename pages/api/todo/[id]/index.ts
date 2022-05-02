@@ -1,0 +1,45 @@
+import { prisma } from '../../../../prisma/db';
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { getSession } from 'next-auth/react';
+import { UserSession } from '../../auth/[...nextauth]';
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  if (!['PATCH', 'DELETE'].includes(req.method || '')) {
+    res.status(405).send('Method Not Allowed');
+    return;
+  }
+
+  const session = (await getSession({ req })) as UserSession;
+
+  if (!session) {
+    res.status(401).send('Unauthorized');
+    return;
+  }
+
+  //TODO patch and delete requests
+
+  if (req.method === 'PATCH') {
+    const { id } = req.query;
+    const { newTitle } = JSON.parse(req.body);
+
+    console.log(id, newTitle);
+
+    const todo = await prisma.todo.update({
+      where: {
+        id: String(id),
+      },
+      data: { title: newTitle },
+    });
+
+    res.status(200).json(todo);
+  }
+
+  // if (req.method === 'DELETE') {
+  //   const todo = await prisma.todo.update();
+
+  //   res.status(200).json(todo);
+  // }
+}

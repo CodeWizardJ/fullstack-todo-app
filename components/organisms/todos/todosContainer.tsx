@@ -21,5 +21,14 @@ export const TodosContainer: React.FC<TodosContainerProps> = ({
     fetchTodos().then((todos) => setTodos(todos));
   }, [refreshTodoToken]);
 
-  return <Todos todos={todos}></Todos>;
+  const onTodoBlur = async (todoId: Todo['id'], newTitle: Todo['title']) => {
+    fetch(`/api/todo/${todoId}`, {
+      method: 'PATCH',
+      body: JSON.stringify({
+        newTitle,
+      }),
+    });
+  };
+
+  return <Todos todos={todos} onTodoBlur={onTodoBlur}></Todos>;
 };
