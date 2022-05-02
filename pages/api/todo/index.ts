@@ -30,6 +30,7 @@ export default async function handler(
       data: { title, userId: session.userId, isCompleted: false },
     });
 
+    await prisma?.$disconnect;
     res.status(200).json(todo);
   }
 }
