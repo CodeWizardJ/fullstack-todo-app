@@ -19,8 +19,6 @@ export default async function handler(
     return;
   }
 
-  //TODO patch and delete requests
-
   if (req.method === 'PATCH') {
     const { id } = req.query;
     const parsedBody = JSON.parse(req.body);
@@ -35,9 +33,15 @@ export default async function handler(
     res.status(200).json(todo);
   }
 
-  // if (req.method === 'DELETE') {
-  //   const todo = await prisma.todo.update();
+  if (req.method === 'DELETE') {
+    const { id } = req.query;
 
-  //   res.status(200).json(todo);
-  // }
+    const todo = await prisma?.todo.delete({
+      where: {
+        id: String(id),
+      },
+    });
+
+    res.status(200).json(todo);
+  }
 }
