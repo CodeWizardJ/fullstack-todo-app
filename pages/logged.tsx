@@ -10,18 +10,22 @@ export const LoggedPage = ({ session }: { session: UserSession }) => {
   const [refreshTodoToken, setRefreshTodoToken] = React.useState('');
 
   return (
-    <Container py="64px">
-      <Center>
-        <Flex flexDirection={'column'}>
-          <Text mb="24px"> Welcome back {session?.user?.name}! 🖐️</Text>
-          <Button onClick={() => signOut()}>Logout</Button>
-          <TodoCreator
-            onTodoCreated={() => setRefreshTodoToken(Math.random().toString())}
-          />
-          <TodosContainer refreshTodoToken={refreshTodoToken} />
-        </Flex>
-      </Center>
-    </Container>
+    <Flex background="linear-gradient(93.73deg, #FEAC5E 2.17%, #C779D0 47.86%, #4BC0C8 98.58%)">
+      <Container py="64px" h="100vh" background="white">
+        <Center>
+          <Flex flexDirection={'column'}>
+            <Text mb="24px"> Welcome back {session?.user?.name}! 🖐️</Text>
+            <Button onClick={() => signOut()}>Logout</Button>
+            <TodoCreator
+              onTodoCreated={() =>
+                setRefreshTodoToken(Math.random().toString())
+              }
+            />
+            <TodosContainer refreshTodoToken={refreshTodoToken} />
+          </Flex>
+        </Center>
+      </Container>
+    </Flex>
   );
 };
 

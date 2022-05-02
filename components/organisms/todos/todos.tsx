@@ -21,7 +21,7 @@ export const Todos = ({
 }: TodosProps) => {
   return (
     <>
-      <Heading size="md" mb="16px" mt="24px">
+      <Heading size="md" mb="16px" mt="72px">
         Todos
       </Heading>
       {todos.map((todo) => {

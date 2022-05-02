@@ -2,6 +2,7 @@ import {
   Box,
   Container,
   Flex,
+  Image,
   ListItem,
   SimpleGrid,
   Text,
@@ -13,12 +14,13 @@ export const LandingBody = () => {
     <Container>
       <SimpleGrid columns={2} spacing="40px" padding="200px 24px">
         <Box>
-          <Box
-            backgroundColor="gray.300"
+          <Image
+            src={'/placeholder.jpg'}
             width="100%"
             height="255px"
             borderRadius="16px"
-          ></Box>
+            alt={'alt text'}
+          ></Image>
         </Box>
         <Flex flexDirection="column" justifyContent="center">
           <Text mb="8px">Including the following technologies:</Text>
